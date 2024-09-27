@@ -13,7 +13,7 @@
                 <!-- Etiqueta para la caja de texto -->
                 <asp:Label ID="lblCodigoVoucher" runat="server" Text="Ingresa tu código de voucher:" CssClass="form-label"></asp:Label>
                 
-                <!-- Caja de texto para ingresar código -->
+                <!-- Caja de texto para ingresar código  pruebasss-->
                 <asp:TextBox ID="txtCodigoVoucher" runat="server" CssClass="form-control" Placeholder="Código de voucher"></asp:TextBox>
                 
                 <!-- Botón para enviar el código -->
