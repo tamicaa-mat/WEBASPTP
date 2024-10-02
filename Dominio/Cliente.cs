@@ -14,6 +14,12 @@ namespace Dominio
         public string DNI { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
+
+        public string Ciudad { get; set; }    
+        public int CodigoPostal { get; set; }
+
+        public string Direccion { get; set; }
+
         
         //public List<Voucher> Vouchers { get; set; }  // Lista de vouchers asociados al cliente
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,17 +20,23 @@ namespace TpWeb.aspGrupo8A
           
             string codigoVoucher = txtCodigoVoucher.Text;
 
-          
-            //if (EsCodigoValido(codigoVoucher))
-            //{
-          
-            //    Response.Write("<script>alert('Código válido.');</script>");
-            //}
-            //else
-            //{
-           
-            //    Response.Write("<script>alert('Código no válido.');</script>");
-            //}
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            // Verificar si el código de voucher existe
+            bool existeVoucher = accesoDatos.ExisteCodigoVoucher(codigoVoucher);
+
+            if (existeVoucher)
+            {
+                // Si el voucher existe, redirigir a la página de selección de premio
+                Response.Redirect("SeleccionarPremio.aspx");
+            }
+            else
+            {
+                // Si el voucher no existe, mostrar un mensaje de error
+                lblError.Text = "El código del voucher no es válido o ya ha sido utilizado.";
+                lblError.Visible = true;
+            }
+
         }
 
 

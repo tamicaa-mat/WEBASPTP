@@ -19,6 +19,9 @@
                 <!-- Botón para enviar el código -->
                 <asp:Button ID="btnCanjear" runat="server" Text="Canjear" CssClass="btn btn-primary mt-3" OnClick="btnCanjear_Click" />
 
+                <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label>
+
+
             </div>
         </div>
     </div>
