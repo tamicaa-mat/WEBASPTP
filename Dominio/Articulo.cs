@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Datos;
+
+
 namespace Dominio 
 {
     public partial class Articulo
@@ -21,6 +23,7 @@ namespace Dominio
         public Categoria categoria { get; set; }
         [DisplayName("Marca")]
         public Marca marca { get; set; }
+
         public List<string> ImagenesXArticulo()
         {
             List<string> imagenes = new List<string>();
