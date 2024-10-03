@@ -1,64 +1,54 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroCliente.aspx.cs" Inherits="TpWeb.aspGrupo8A.RegistroCliente" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="textDni" class="form-label">DNI</label>
+                    <asp:TextBox ID="textDni" CssClass="form-control" runat="server" AutoPostBack="True" OnTextChanged="textDni_TextChanged" />
+                </div>
+                <div class="col">
+                    <label for="textNombre" class="form-label">Nombre</label>
+                    <asp:TextBox ID="textNombre" CssClass="form-control" placeholder="Nombre" runat="server"></asp:TextBox>
+                </div>
+                <div class="col">
+                    <label for="textApellido" class="form-label">Apellido</label>
+                    <asp:TextBox ID="textApellido" CssClass="form-control" placeholder="Apellido" runat="server" />
+                </div>
+            </div>
 
- <form class="row g-3">
+            <div class="col-md-6">
+                <label for="textEmail" class="form-label">Email</label>
+                <asp:TextBox ID="textEmail" CssClass="form-control" runat="server" placeholder="tuMail@mail.com" />
+            </div>
+            <div class="col-12">
+                <label for="textDireccion" class="form-label">Direccion</label>
+                <asp:TextBox CssClass="form-control" ID="textDireccion" placeholder="Calle Siempre Viva 123" runat="server" />
+            </div>
 
-    <div class="row">
-  <div class="col">
-      <label for="inputNombre" class="form-label" >Nombre</label>
-    <input type="text" class="form-control" placeholder="First name" aria-label="First name"id="inmputNombre">
-  </div>
-  <div class="col">
-        <label for="inputApellido" class="form-label">Apellido</label>
-    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"id="inputApellido">
-  </div>
-</div>
+            <div class="col-md-6">
+                <label for="textCiudad" class="form-label">Ciudad</label>
+                <asp:TextBox CssClass="form-control" ID="textCiudad" runat="server" />
+            </div>
 
+            <div class="col-md-2">
+                <label for="textCP" class="form-label">Codigo Postal</label>
+                <asp:TextBox CssClass="form-control" ID="textCP" runat="server" />
+            </div>
 
-
-   
-  <div class="col-md-6">
-    <label for="inputEmail" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail">
-  </div>
-  <div class="col-md-6">
-    <label for="inputDNI" class="form-label" >DNI</label>
-    <input type="text" class="form-control" id="inputDNI">
-  </div>
-  <div class="col-12">
-    <label for="inputDireccion" class="form-label">Direccion</label>
-    <input type="text" class="form-control" id="inputDireccion" placeholder="Calle Siempre Viva 123">
-  </div>
-
-  <div class="col-md-6">
-    <label for="inputCiudad" class="form-label">Ciudad</label>
-    <input type="text" class="form-control" id="inputCiudad">
-  </div>
-  
-  <div class="col-md-2">
-    <label for="inputCP" class="form-label">Codigo Postal</label>
-    <input type="text" class="form-control" id="inputCP">
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Acepto todo
-      </label>
-    </div>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary" id="btnAceptar" >Aceptar</button>
-  </div>
-</form>
-
-
-
-
-
-
-
-
-
+            <div class="col-12">
+                <div class="form-check">
+                    <asp:CheckBox ID="chkbAcepto" CssClass="form-check-input" runat="server" />
+                    <label class="form-check-label" for="chkbAcepto">
+                        Acepto todo
+                    </label>
+                </div>
+            </div>
+            <div class="col-12">
+                <asp:Button ID="btnAceptar" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 
