@@ -20,7 +20,7 @@ namespace Negocio
             {
                 datos.setearConsulta(@"SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, M.Descripcion AS Marca, 
                                      A.IdCategoria, C.Descripcion AS Categoria, A.Precio, 
-                                     MIN(I.ImagenUrl) AS ImagenUrl
+                                     MIN(I.ImagenUrl) AS ImagenesUrl
                                      FROM ARTICULOS A
                                      JOIN MARCAS M ON A.IdMarca = M.Id
                                      LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id
@@ -37,13 +37,17 @@ namespace Negocio
                     aux.Descripcion = datos.Lector["Descripcion"].ToString();
                     aux.marca = new Marca((int)datos.Lector["IdMarca"], datos.Lector["marca"].ToString());
                     aux.categoria = new Categoria((int)datos.Lector["idCategoria"], datos.Lector["categoria"].ToString());
-                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+
+                    if (aux.Imagenes == null)
+                        aux.Imagenes = new List<Imagen>();
+
+                    if (!(datos.Lector["ImagenesUrl"] is DBNull))
                     {
-                        aux.Imagen = datos.Lector["ImagenUrl"].ToString();
+                        aux.Imagenes.Add(new Imagen(datos.Lector["ImagenesUrl"].ToString()));
                     }
                     else
                     {
-                        aux.Imagen = "https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk=";
+                        aux.Imagenes.Add(new Imagen("https://media.istockphoto.com/id/1128826884/es/vector/ning%C3%BAn-s%C3%ADmbolo-de-vector-de-imagen-falta-icono-disponible-no-hay-galer%C3%ADa-para-este-momento.jpg?s=612x612&w=0&k=20&c=9vnjI4XI3XQC0VHfuDePO7vNJE7WDM8uzQmZJ1SnQgk="));
                     }
                     aux.Precio = (float)(decimal)datos.Lector["Precio"];
                     lista.Add(aux);

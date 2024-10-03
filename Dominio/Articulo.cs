@@ -17,41 +17,41 @@ namespace Dominio
         public string Nombre { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
-        public string Imagen { get; set; }  
+        public List<Imagen> Imagenes { get; set; }  
         public float Precio { get; set; }
         [DisplayName("Categoría")]
         public Categoria categoria { get; set; }
         [DisplayName("Marca")]
         public Marca marca { get; set; }
 
-        public List<string> ImagenesXArticulo()
-        {
-            List<string> imagenes = new List<string>();
-            AccesoDatos datos = new AccesoDatos();
-            try
-            {
-                datos.setearConsulta("SELECT ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
-                datos.SetearParametro("@IdArticulo", this.Id);
-                datos.ejecutarLectura();
+        //public List<string> ImagenesXArticulo()
+        //{
+        //    List<string> imagenes = new List<string>();
+        //    AccesoDatos datos = new AccesoDatos();
+        //    try
+        //    {
+        //        datos.setearConsulta("SELECT ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
+        //        datos.SetearParametro("@IdArticulo", this.Id);
+        //        datos.ejecutarLectura();
 
-                while (datos.Lector.Read())
-                {
-                    if (!(datos.Lector["ImagenUrl"] is DBNull))
-                    {
-                        imagenes.Add(datos.Lector["ImagenUrl"].ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
+        //        while (datos.Lector.Read())
+        //        {
+        //            if (!(datos.Lector["ImagenUrl"] is DBNull))
+        //            {
+        //                imagenes.Add(datos.Lector["ImagenUrl"].ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-            return imagenes;
-        }
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+        //    return imagenes;
+        //}
     }
 }

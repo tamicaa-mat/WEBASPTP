@@ -13,7 +13,7 @@
      <asp:Repeater ID="rptArticulos" runat="server">  
          <ItemTemplate>
          <div class="card column" style="width: 18rem;">
-            <img src='<%# Eval("Imagen") %>'class="card-img-top img-fluid img" alt="...">
+            <img src='<%# Eval("Imagenes[0].Url") %>'class="card-img-top img-fluid img" alt="...">
             <div class="card-body">
             <h5 class="card-title"><%# Eval("Nombre") %></h5>
             <p class="card-text"><%# Eval ("Descripcion") %></p>

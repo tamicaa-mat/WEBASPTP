@@ -66,201 +66,201 @@ namespace Datos
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
-//        public int ObtenerIdArticulo(string codigo) //Permite obtener el nuevo codigo id de articulo
-//        {
-//            int id = 0;
-//            try
-//            {
-//                setearConsulta("SELECT Id FROM ARTICULOS WHERE Codigo = @Codigo");
-//                SetearParametro("@Codigo", codigo);
-//                ejecutarLectura();
-//                if (Lector.Read())
-//                {
-//                    id = (int)(Lector["Id"]);
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                cerrarConexion();
-//            }
-//            return id;
+        public int ObtenerIdArticulo(string codigo) //Permite obtener el nuevo codigo id de articulo
+        {
+            int id = 0;
+            try
+            {
+                setearConsulta("SELECT Id FROM ARTICULOS WHERE Codigo = @Codigo");
+                SetearParametro("@Codigo", codigo);
+                ejecutarLectura();
+                if (Lector.Read())
+                {
+                    id = (int)(Lector["Id"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cerrarConexion();
+            }
+            return id;
 
 
-//        }
-////..................................................validar.........................................................
+        }
+        //..................................................validar.........................................................
 
-//        public bool ExisteCodigoArticulo(string codigo)
-//        {
-//            AccesoDatos datos = new AccesoDatos();
-//            bool existe = false;
+        public bool ExisteCodigoArticulo(string codigo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existe = false;
 
-//            try
-//            {
-               
-//                datos.setearConsulta("SELECT Codigo FROM ARTICULOS WHERE Codigo = @codigo");
-//                datos.comando.Parameters.Clear();
-//                datos.comando.Parameters.AddWithValue("@codigo", codigo);
+            try
+            {
 
-//                datos.ejecutarLectura();
+                datos.setearConsulta("SELECT Codigo FROM ARTICULOS WHERE Codigo = @codigo");
+                datos.comando.Parameters.Clear();
+                datos.comando.Parameters.AddWithValue("@codigo", codigo);
 
-                
-//                if (datos.Lector.Read())
-//                {
-//                    existe = true;  
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                datos.cerrarConexion();
-//            }
-
-//            return existe;
-//        }
-
-//        public bool ExisteNombreMarca(string nombreMarca)
-//        {
-//            AccesoDatos datos = new AccesoDatos();
-//            bool existeNombre = false;
-
-//            try
-//            {
-
-//                datos.setearConsulta("SELECT Descripcion FROM MARCAS WHERE Descripcion = @descripcion");
-//                datos.comando.Parameters.Clear();
-//                datos.comando.Parameters.AddWithValue("@descripcion", nombreMarca);
-
-//                datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
 
-//                if (datos.Lector.Read())
-//                {
-//                    existeNombre = true;
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                datos.cerrarConexion();
-//            }
+                if (datos.Lector.Read())
+                {
+                    existe = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
-//            return existeNombre;
+            return existe;
+        }
 
+        public bool ExisteNombreMarca(string nombreMarca)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existeNombre = false;
 
-//        }
+            try
+            {
 
-//        public bool ExisteIDmarca(int codMarca)
-//        {
-//            AccesoDatos datos = new AccesoDatos();
-//            bool existeIDmarca = false;
+                datos.setearConsulta("SELECT Descripcion FROM MARCAS WHERE Descripcion = @descripcion");
+                datos.comando.Parameters.Clear();
+                datos.comando.Parameters.AddWithValue("@descripcion", nombreMarca);
 
-//            try
-//            {
-
-//                datos.setearConsulta("SELECT Id FROM MARCAS WHERE Id = @Id");
-//                datos.comando.Parameters.Clear();
-//                datos.comando.Parameters.AddWithValue("@Id", codMarca);
-
-//                datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
 
-//                if (datos.Lector.Read())
-//                {
-//                    existeIDmarca = true;
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                datos.cerrarConexion();
-//            }
+                if (datos.Lector.Read())
+                {
+                    existeNombre = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
-//            return existeIDmarca;
-
-
-//        }
-
-//        public bool ExisteNombreCategoria(string nombreCAT)
-//        {
-//            AccesoDatos datos = new AccesoDatos();
-//            bool existeNombreCat = false;
-
-//            try
-//            {
-
-//                datos.setearConsulta("SELECT Descripcion FROM CATEGORIAS WHERE Descripcion = @descripcion");
-//                datos.comando.Parameters.Clear();
-//                datos.comando.Parameters.AddWithValue("@descripcion", nombreCAT);
-
-//                datos.ejecutarLectura();
+            return existeNombre;
 
 
-//                if (datos.Lector.Read())
-//                {
-//                    existeNombreCat = true;
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                datos.cerrarConexion();
-//            }
+        }
 
-//            return existeNombreCat;
+        public bool ExisteIDmarca(int codMarca)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existeIDmarca = false;
 
+            try
+            {
 
+                datos.setearConsulta("SELECT Id FROM MARCAS WHERE Id = @Id");
+                datos.comando.Parameters.Clear();
+                datos.comando.Parameters.AddWithValue("@Id", codMarca);
+
+                datos.ejecutarLectura();
 
 
-//        }
-//        public bool ExisteIDcategoria(int codCate)
-//        {
+                if (datos.Lector.Read())
+                {
+                    existeIDmarca = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
-//            AccesoDatos datos = new AccesoDatos();
-//            bool existeIDcategoria = false;
-
-//            try
-//            {
-
-//                datos.setearConsulta("SELECT Id FROM CATEGORIAS WHERE Id = @Id");
-//                datos.comando.Parameters.Clear();
-//                datos.comando.Parameters.AddWithValue("@Id", codCate);
-
-//                datos.ejecutarLectura();
+            return existeIDmarca;
 
 
-//                if (datos.Lector.Read())
-//                {
-//                    existeIDcategoria = true;
-//                }
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//            finally
-//            {
-//                datos.cerrarConexion();
-//            }
+        }
 
-//            return existeIDcategoria;
+        public bool ExisteNombreCategoria(string nombreCAT)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existeNombreCat = false;
 
-//        }
+            try
+            {
+
+                datos.setearConsulta("SELECT Descripcion FROM CATEGORIAS WHERE Descripcion = @descripcion");
+                datos.comando.Parameters.Clear();
+                datos.comando.Parameters.AddWithValue("@descripcion", nombreCAT);
+
+                datos.ejecutarLectura();
+
+
+                if (datos.Lector.Read())
+                {
+                    existeNombreCat = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return existeNombreCat;
+
+
+
+
+        }
+        public bool ExisteIDcategoria(int codCate)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            bool existeIDcategoria = false;
+
+            try
+            {
+
+                datos.setearConsulta("SELECT Id FROM CATEGORIAS WHERE Id = @Id");
+                datos.comando.Parameters.Clear();
+                datos.comando.Parameters.AddWithValue("@Id", codCate);
+
+                datos.ejecutarLectura();
+
+
+                if (datos.Lector.Read())
+                {
+                    existeIDcategoria = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return existeIDcategoria;
+
+        }
         ////////////////////////////////////////////ACCESO DATOS PARA TP WEB ASP.NET
         public bool ExisteCodigoVoucher(string codigo)
         {
