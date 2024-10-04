@@ -16,7 +16,6 @@ namespace TpWeb.aspGrupo8A
         {
             if (!IsPostBack)
             {
-
             }
         }
         protected void textDni_TextChanged(object sender, EventArgs e)
@@ -36,6 +35,32 @@ namespace TpWeb.aspGrupo8A
                 textCiudad.Text = cliente.Ciudad.ToString();
                 textCP.Text = cliente.CodigoPostal.ToString();
             }
+        }
+
+        protected void btnParticipar_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+            Cliente cliente = new Cliente();
+                cliente.DNI = textDni.Text.ToString();
+                cliente.Nombre = textNombre.Text.ToString();
+                cliente.Apellido = textApellido.Text.ToString();
+                cliente.Email = textEmail.Text.ToString();
+                cliente.Direccion = textDireccion.Text.ToString();
+                cliente.Ciudad = textCiudad.Text.ToString();
+                cliente.CodigoPostal = int.Parse(textCP.Text);
+                
+                ClienteNegocio clienteNegocio = new ClienteNegocio();
+                clienteNegocio.AltaCliente(cliente);
+
+                Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

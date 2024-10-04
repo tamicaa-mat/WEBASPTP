@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <asp:Button ID="btnAceptar" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
+                <asp:Button ID="btnParticipar" CssClass="btn btn-primary" runat="server" Text="Participar" OnClick="btnParticipar_OnClick" />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -83,5 +83,31 @@ namespace Negocio
             }
             return cliente;
         }
+        public void AltaCliente(Cliente cliente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO Clientes(Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP) " +
+                                     "VALUES(@Documento, @Nombre, @Apellido, @Email, @Direccion, @Ciudad, @CP)");
+
+                datos.SetearParametro("@Documento", cliente.DNI);
+                datos.SetearParametro("@Nombre",cliente.Nombre);
+                datos.SetearParametro("@Apellido",cliente.Apellido);
+                datos.SetearParametro("@Email",cliente.Email);
+                datos.SetearParametro("@Direccion",cliente.Direccion);
+                datos.SetearParametro("@Ciudad",cliente.Ciudad);
+                datos.SetearParametro("@CP",cliente.CodigoPostal);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }
