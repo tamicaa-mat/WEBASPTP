@@ -40,8 +40,9 @@ namespace TpWeb.aspGrupo8A
         protected void btnParticipar_OnClick(object sender, EventArgs e)
         {
             try
-            {
-            Cliente cliente = new Cliente();
+            { 
+
+                Cliente cliente = new Cliente();
                 cliente.DNI = textDni.Text.ToString();
                 cliente.Nombre = textNombre.Text.ToString();
                 cliente.Apellido = textApellido.Text.ToString();
@@ -50,10 +51,19 @@ namespace TpWeb.aspGrupo8A
                 cliente.Ciudad = textCiudad.Text.ToString();
                 cliente.CodigoPostal = int.Parse(textCP.Text);
                 
-                ClienteNegocio clienteNegocio = new ClienteNegocio();
-                clienteNegocio.AltaCliente(cliente);
 
-                Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
+                ClienteNegocio clienteNegocio = new ClienteNegocio();
+
+                if (validarCajasTexto())
+                {
+                    return;
+                }
+
+                else
+                {
+                    clienteNegocio.AltaCliente(cliente);
+                    Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
+                }
             }
             catch (Exception)
             {
@@ -62,5 +72,53 @@ namespace TpWeb.aspGrupo8A
             }
 
         }
+
+
+        ///validaciones de cajas de texto 
+        bool esNumero(string texto)
+        {
+            long numero;
+            return long.TryParse(texto, out numero);
+        }
+        public bool validarCajasTexto()
+        {
+            string mensajeError = "";
+
+        
+            if (string.IsNullOrEmpty(textDni.Text))
+            {
+                mensajeError = "El campo DNI no puede estar vacío.\n";
+            }
+            else if (!esNumero(textDni.Text))  
+            {
+                mensajeError = "DNI debe contener solo números.\n";
+            }
+
+          
+            if (!string.IsNullOrEmpty(mensajeError))
+            {
+                textDni.Text = "";  
+                textDni.Attributes["placeholder"] = mensajeError;  
+                //textDni.ForeColor = System.Drawing.Color.Red; 
+            }
+
+           
+            textDni.ForeColor = System.Drawing.Color.Black;
+            return true;  
+        }
+
+
+
+
+
+
+
+
     }
+
 }
+
+
+
+
+
