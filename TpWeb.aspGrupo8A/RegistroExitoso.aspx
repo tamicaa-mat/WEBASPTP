@@ -6,6 +6,9 @@
         <div class="col">   
             <asp:Label ID="MensajeExito" runat="server"></asp:Label>
         </div>
+        <div class="col">   
+            <a href="Default.aspx" class="link-primary">Volver</a>
+        </div>
     </div>
     </div>
 </asp:Content>
