@@ -52,6 +52,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
+        <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>
+        </div>
     </div>
 
 </asp:Content>
