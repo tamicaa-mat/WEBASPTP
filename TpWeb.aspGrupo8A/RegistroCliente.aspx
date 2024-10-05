@@ -50,6 +50,8 @@
                     <label class="form-check-label" for="chkbAcepto">
                         Acepto todo
                     </label>
+                    <asp:Label ID="lblMensajeError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
+
                 </div>
             </div>
             <div class="col-12">

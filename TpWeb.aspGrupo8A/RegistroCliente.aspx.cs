@@ -40,8 +40,11 @@ namespace TpWeb.aspGrupo8A
         protected void btnParticipar_OnClick(object sender, EventArgs e)
         {
             try
-            { 
-
+            {
+                if (!validarCajasTexto())
+                {
+                    return;
+                }
                 Cliente cliente = new Cliente();
                 cliente.DNI = textDni.Text.ToString();
                 cliente.Nombre = textNombre.Text.ToString();
@@ -54,16 +57,9 @@ namespace TpWeb.aspGrupo8A
 
                 ClienteNegocio clienteNegocio = new ClienteNegocio();
 
-                if (validarCajasTexto())
-                {
-                    return;
-                }
-
-                else
-                {
-                    clienteNegocio.AltaCliente(cliente);
-                    Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
-                }
+                clienteNegocio.AltaCliente(cliente);
+                Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
+                
             }
             catch (Exception)
             {
@@ -83,58 +79,124 @@ namespace TpWeb.aspGrupo8A
         public bool validarCajasTexto()
         {
 
+            bool aux = true;
 
-
+            // VALIDA DNI:
 
             if (string.IsNullOrEmpty(textDni.Text))
             {
 
                 lblErrorDni.Text = "El campo DNI no puede estar vacío.\n";
                 lblErrorDni.Visible = true;
+                aux = false;
             }
             else if (!esNumero(textDni.Text))
             {
                 lblErrorDni.Text = "DNI debe contener solo números.\n";
                 lblErrorDni.Visible = true;
+                aux = false; 
             }
+            else { lblErrorDni.Visible = false; }
+
+            // VALIDA VALIDA CORREO: 
 
             if (string.IsNullOrWhiteSpace(textEmail.Text))
             {
                 lblErrorEmail.Text = "Debe colocar un Email. \n";
                 lblErrorEmail.Visible = true;
+                aux = false;
             }
+            else
+            {
+                lblErrorEmail.Visible = false;  
+            }
+
+            // VALIDA DIRECCIÓN;
 
             if (string.IsNullOrEmpty(textDireccion.Text))
             {
                 lblErrorDireccion.Text = "Debe colocar una dirección. \n";
                 lblErrorDireccion.Visible = true;
+                aux = false;
             }
+            else
+            {
+                lblErrorDireccion.Visible = false;
+            }
+
+            // VALIDA CIUDAD;
 
             if (string.IsNullOrEmpty(textCiudad.Text))
             {
                 lblErrorCiudad.Text = "Debe colocar nombre de la ciudad. \n";
                 lblErrorCiudad.Visible = true;
+                aux = false;
             }
+            else
+            {
+                lblErrorCiudad.Visible = false; 
+            }
+
+            // VALIDA CP;
 
             if (string.IsNullOrEmpty(textCP.Text))
             {
-                lblErrorCp.Text = "El campo Código postal no puede estar vacío. \n";
-                lblErrorCp.Visible = true;  
+                lblErrorCp.Text = "El campo Código Postal no puede estar vacío.";
+                lblErrorCp.Visible = true;
+                aux = false;
             }
+            else if (!esNumero(textCP.Text))  // Verifica que contenga solo números
+            {
+                lblErrorCp.Text = "El Código Postal debe contener solo números.";
+                lblErrorCp.Visible = true;
+                aux = false;
+            }
+            else
+            {
+                lblErrorCp.Visible = false;
+            }
+
+            // VALIDA APELLIDO;
 
             if (string.IsNullOrEmpty(textApellido.Text)) 
             {
                 lblErrorApellido.Text = "Debe colocar un apellido.  \n";
                 lblErrorApellido.Visible = true;
+                aux = false;
+            }
+            else
+            {
+                lblErrorApellido.Visible = false;
             }
             
+            // VALIDA NOMBRE; 
+
             if(string.IsNullOrEmpty(textNombre.Text))
             {
                 lblErrorNombre.Text = "Debe colocar un nombre.  \n";
                 lblErrorNombre.Visible = true;
+                aux = false;
             }
-            
-            return true;  
+            else
+            {
+                lblErrorNombre.Visible = false;
+            }
+
+            // VALIDA CHECKBOX; 
+
+            if (!chkbAcepto.Checked)
+            {
+                lblMensajeError.Text = "Debe aceptar los términos y condiciones.";
+                lblMensajeError.Visible = true;
+                aux = false;
+            }
+            else
+            {
+                lblMensajeError.Visible = false;
+            }
+
+            return aux;
+
         }
 
 
