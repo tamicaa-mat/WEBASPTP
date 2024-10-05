@@ -19,3 +19,19 @@ textarea {
         padding: 0;
     }
 }
+
+#carouselExampleAutoplaying {
+    width: 100%;
+}
+
+.carousel-inner {
+    position: relative;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important; /* Gris claro */
+}
+
+p {
+    overflow-wrap: break-word; /* Permite que el texto largo se divida */
+}

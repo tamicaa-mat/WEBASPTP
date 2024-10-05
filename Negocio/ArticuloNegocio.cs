@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    class ArticuloNegocio
+    public class ArticuloNegocio
     {
         public List<Articulo> Listar()
         {
@@ -92,16 +92,19 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void agregarImagenUrl(int idArticulo, List<Imagen> Imagen)
+        public void agregarImagenUrl(int idArticulo, List<Imagen> imagenes)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
+                foreach(Imagen imagen in imagenes)
+                {
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) " +
                                      "VALUES (@IdArticulo, @ImagenUrl)");
                 datos.SetearParametro("@IdArticulo", idArticulo);
-                datos.SetearParametro("@ImagenUrl", Imagen);
+                datos.SetearParametro("@ImagenUrl", imagen.Url);
                 datos.ejecutarAccion();
+                }
             }
             catch (Exception ex)
             {
@@ -145,15 +148,19 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void modificarImagenUrl(int idArticulo, List<Imagen> Imagen)
+        public void modificarImagenUrl(int idArticulo, List<Imagen> imagenes)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl where idArticulo = @IdArticulo");
-                datos.SetearParametro("@IdArticulo", idArticulo);
-                datos.SetearParametro("@ImagenUrl", Imagen);
-                datos.ejecutarAccion();
+                foreach (Imagen imagen in imagenes)
+                {
+                    datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) " +
+                                         "VALUES (@IdArticulo, @ImagenUrl)");
+                    datos.SetearParametro("@IdArticulo", idArticulo);
+                    datos.SetearParametro("@ImagenUrl", imagen.Url);
+                    datos.ejecutarAccion();
+                }
             }
             catch (Exception ex)
             {
@@ -263,6 +270,43 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public Articulo ObtenerArticuloId(int idArticulo)
+        {
+            Articulo articulo = null;
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT A.Id, A.Nombre, A.Descripcion, A.Precio, A.IdMarca, A.IdCategoria, M.Descripcion AS Marca, C.Descripcion AS Categoria " +
+                                     "FROM ARTICULOS A " +
+                                     "INNER JOIN MARCAS M ON A.IdMarca = M.Id " +
+                                     "INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id " +
+                                     "WHERE A.Id= @Id");
+                datos.SetearParametro("@Id", idArticulo);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    Articulo art = new Articulo();
+                    art.Id = (int)datos.Lector["Id"];
+                    art.Nombre = datos.Lector["Nombre"].ToString();
+                    art.Descripcion = datos.Lector["Descripcion"].ToString();
+                    art.marca = new Marca((int)datos.Lector["IdMArca"], datos.Lector["Marca"].ToString());
+                    art.categoria = new Categoria((int)datos.Lector["IdCategoria"], datos.Lector["Categoria"].ToString());
+                    art.Precio = (float)(decimal)datos.Lector["Precio"];
+                    articulo = art;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return articulo;
         }
     }
 }

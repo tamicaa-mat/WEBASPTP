@@ -41,7 +41,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void agregar(Imagen nuevaImagen)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -62,7 +61,6 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -81,6 +79,35 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public List<Imagen> imagenesxArticulo(int idArticulo)
+        {
+            List<Imagen> imagenes = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM IMAGENES WHERE IdArticulo = @IdArticulo");
+                datos.SetearParametro("@IdArticulo", idArticulo);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen imagen = new Imagen();
+                    imagen.Id = (int)datos.Lector["Id"];
+                    imagen.Url = datos.Lector["ImagenUrl"].ToString();
+                    imagenes.Add(imagen);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return imagenes;
         }
     }
 }

@@ -29,7 +29,15 @@ namespace TpWeb.aspGrupo8A
                 rptArticulos.DataBind();
             }
         }
+        protected string TextDescripcion(string descripcion)
+        {
+            int maxCaracter = 90;
 
+            if (descripcion.Length > maxCaracter)
+                return descripcion.Substring(0, maxCaracter) + "...";
+            else
+                return descripcion;
+        }
 
     }
 }
