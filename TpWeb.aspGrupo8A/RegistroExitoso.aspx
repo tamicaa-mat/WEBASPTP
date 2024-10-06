@@ -7,7 +7,7 @@
             <asp:Label ID="MensajeExito" runat="server"></asp:Label>
         </div>
         <div class="col">   
-            <a href="Default.aspx" class="link-primary">Volver</a>
+            <a href="Default.aspx" class="link-primary" style="text-decoration:none">Volver</a>
         </div>
     </div>
     </div>

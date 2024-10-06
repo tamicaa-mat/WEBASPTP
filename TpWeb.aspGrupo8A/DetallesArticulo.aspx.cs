@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Datos;
 
 namespace TpWeb.aspGrupo8A
 {
@@ -15,17 +16,27 @@ namespace TpWeb.aspGrupo8A
         {
             if (!IsPostBack)
             {
-                string articuloSeleccionado = Request.QueryString["Id"];
-                try
-                {
-                    int articulo = int.Parse(articuloSeleccionado);
-                    cargaImagenes(articulo);
-                    cargaInformacionArticulo(articulo);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error: { ex.Message}");
-                }
+                int idArticulo = 0;
+                    if (Session["Id"] != null)
+                    {
+                        idArticulo = int.Parse(Session["Id"].ToString());
+                    }
+                    else
+                    {
+                        AccesoDatos datos = new AccesoDatos();
+                        ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                        Articulo articulo = articuloNegocio.PrimerArticulo();
+
+                        if (articulo != null)
+                            idArticulo = articulo.Id;
+                        else
+                        {
+                            //lo mandara a una nueva pantalla de "Error no se encontro producto para mostrar" 
+                        }
+                    }
+                    cargaImagenes(idArticulo);
+                    cargaInformacionArticulo(idArticulo);
+                    cargaOtrosArticulos(idArticulo);
             }
         }
         protected void cargaImagenes(int idArticulo)
@@ -66,6 +77,30 @@ namespace TpWeb.aspGrupo8A
             {
                 throw ex;
             }
+        }
+        protected void cargaOtrosArticulos(int idArticuloSeleccionado)
+        {
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            List<Articulo> listaArticulos = articuloNegocio.Listar(); // Usamos tu método "listar" para obtener todos los artículos
+
+            // Filtrar el artículo seleccionado
+            List<Articulo> otrosArticulos = listaArticulos.Where(a => a.Id != idArticuloSeleccionado).ToList();
+            foreach(var articulo in otrosArticulos)
+            {
+                articulo.Imagenes = new ImagenNegocio().imagenesxArticulo(articulo.Id);
+            }
+
+            RepeaterLista.DataSource = otrosArticulos;
+            RepeaterLista.DataBind();
+        }
+        protected void BtnVer_OnClick(object sender, EventArgs e)
+        {
+            string btn = ((Button)sender).CommandArgument;
+            int idSeleccionado = int.Parse(btn);
+            cargaInformacionArticulo(idSeleccionado);
+            cargaOtrosArticulos(idSeleccionado);
+            Session["Id"] = idSeleccionado;
+            Response.Redirect("DetallesArticulo.aspx", false);
         }
     }
 }

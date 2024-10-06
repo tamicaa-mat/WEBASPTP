@@ -35,3 +35,42 @@ textarea {
 p {
     overflow-wrap: break-word; /* Permite que el texto largo se divida */
 }
+
+.articuloList{
+    display :flex;
+    padding :10px;
+    border-bottom :1px solid #ccc;
+    align-items: center;
+}
+
+.imagenArticulo{
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.dark-mode body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .navbar {
+    background-color: #0c0c0c;
+    color: white;
+}
+
+.dark-mode #nav1 {
+    background-color: #0c0c0c;
+}
+.dark-mode .container {
+    background-color: #121212;
+}
+
+.dark-mode .card {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode a {
+    color: #90caf9;
+}

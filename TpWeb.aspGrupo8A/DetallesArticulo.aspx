@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="container">
-        <h1 id="tituloDetalles">Información del artículo</h1>
+        <h1 id="tituloDetalles">INFORMACIÓN DEL ARTÍCULO</h1>
         <div class="row">
             <div class="col">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -52,8 +52,26 @@
                 </tbody>
             </table>
         </div>
-        <div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
-        <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>
+
+        <h3>TAMBIÉN PODRÍAN INTERESARTE</h3>
+        <div style="max-height: 500px; overflow: hidden;">
+            <div style="overflow: hidden;">
+                <asp:Repeater ID="RepeaterLista" runat="server">
+                    <ItemTemplate>
+                        <div class="articuloList d-flex align-items-center p-2" style="border-bottom: 1px solid #ddd;">
+                            <img src='<%# Eval("Imagenes[0].Url") %>' class="imagenArticulo me-3" alt="Imagen del artículo" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
+                            <div>
+                                <h4 style="margin: 0;"><%# Eval("Nombre") %></h4>
+                                <p style="margin: 0;">Precio: $<%# Eval("Precio") %></p>
+                                <asp:Button ID="BtnVer" runat="server" Text="Ver" CommandArgument='<%# Eval("Id").ToString() %>' OnClick="BtnVer_OnClick" CssClass="btn btn-sm btn-secondary mt-2" />
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </div>
+        <div class="btn-volver p-2" style="display: flex; flex-direction: row; justify-content: end;">
+            <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 

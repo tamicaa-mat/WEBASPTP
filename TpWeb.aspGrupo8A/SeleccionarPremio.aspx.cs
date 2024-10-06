@@ -38,6 +38,13 @@ namespace TpWeb.aspGrupo8A
             else
                 return descripcion;
         }
-
+        protected void verMas_OnClick(object sender, EventArgs e)
+        {
+            string btn = ((LinkButton)sender).CommandArgument;
+            int idSeleccionado  = int.Parse(btn);
+            Session["Id"] = idSeleccionado;
+            Response.Redirect("DetallesArticulo.aspx", false);
+            
+        }
     }
 }

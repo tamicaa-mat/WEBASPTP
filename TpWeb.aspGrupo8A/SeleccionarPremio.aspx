@@ -1,6 +1,4 @@
-﻿
-
-<%@ Page Title="Seleccionar Premio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SeleccionarPremio.aspx.cs" Inherits="TpWeb.aspGrupo8A.SeleccionarPremio" %>
+﻿<%@ Page Title="Seleccionar Premio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SeleccionarPremio.aspx.cs" Inherits="TpWeb.aspGrupo8A.SeleccionarPremio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Selecciona tu premio</h2>
@@ -17,10 +15,10 @@
             <div class="card-body">
             <h5 class="card-title"><%# Eval("Nombre") %></h5>
              <p class="card-text"><%# TextDescripcion(Eval("Descripcion").ToString())%>
-                <a href="DetallesArticulo.aspx?id=<%#Eval("Id")%>" style="text-decoration:none"> Ver más</a>
+                <asp:LinkButton Text="Ver más" runat="server" OnClick="verMas_OnClick" CssClass="text-decoration-none" CommandArgument='<%# Eval("Id").ToString() %>' /> 
              </p>
             
-            <a href="RegistroCliente.aspx" class="btn btn-primary">Seleccionar</a>
+            <a href="RegistroCliente.aspx" class="btn btn-secondary">Seleccionar</a>
             </div> 
             </div> 
         </ItemTemplate>

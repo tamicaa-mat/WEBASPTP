@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <asp:Button ID="btnParticipar" CssClass="btn btn-primary" runat="server" Text="Participar" OnClick="btnParticipar_OnClick" />
+                <asp:Button ID="btnParticipar" CssClass="btn btn-secondary" runat="server" Text="Participar" OnClick="btnParticipar_OnClick" />
             </div>
             <div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
             <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>

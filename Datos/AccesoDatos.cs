@@ -155,8 +155,6 @@ namespace Datos
             }
 
             return existeNombre;
-
-
         }
 
         public bool ExisteIDmarca(int codMarca)
@@ -189,8 +187,6 @@ namespace Datos
             }
 
             return existeIDmarca;
-
-
         }
 
         public bool ExisteNombreCategoria(string nombreCAT)
@@ -221,11 +217,7 @@ namespace Datos
             {
                 datos.cerrarConexion();
             }
-
             return existeNombreCat;
-
-
-
 
         }
         public bool ExisteIDcategoria(int codCate)
@@ -293,22 +285,7 @@ namespace Datos
 
             return existe;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
 }
 
 
