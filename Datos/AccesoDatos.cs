@@ -262,9 +262,10 @@ namespace Datos
             try
             {
 
-                datos.setearConsulta("SELECT CodigoVoucher FROM Vouchers WHERE CodigoVoucher = @codigoV");
+                datos.setearConsulta("SELECT CodigoVoucher, FechaCanje FROM Vouchers WHERE CodigoVoucher = @codigoV AND FechaCanje IS NULL");
                 datos.comando.Parameters.Clear();
                 datos.comando.Parameters.AddWithValue("@codigoV", codigo);
+                
 
                 datos.ejecutarLectura();
 
