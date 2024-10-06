@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetallesArticulo.aspx.cs" Inherits="TpWeb.aspGrupo8A.DetallesArticulo" %>
+﻿<%@ Page Title="Articulos en detalle" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DetallesArticulo.aspx.cs" Inherits="TpWeb.aspGrupo8A.DetallesArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -70,9 +70,9 @@
                 </asp:Repeater>
             </div>
         </div>
-        <div class="btn-volver p-2" style="display: flex; flex-direction: row; justify-content: end;">
+        <%--<div class="btn-volver p-2" style="display: flex; flex-direction: row; justify-content: end;">
             <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>
-        </div>
+        </div>--%>
     </div>
 
 </asp:Content>

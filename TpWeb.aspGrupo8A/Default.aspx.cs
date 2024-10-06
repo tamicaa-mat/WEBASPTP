@@ -1,4 +1,4 @@
-﻿using Datos;
+﻿using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,61 +8,24 @@ using System.Web.UI.WebControls;
 
 namespace TpWeb.aspGrupo8A
 {
-    public partial class _Default : Page
+    public partial class _Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                PromoNegocio negocio = new PromoNegocio();
+                rptArticulos.DataSource = negocio.Listar();
+                rptArticulos.DataBind();
+            }
         }
-
-        protected void btnCanjear_Click(object sender, EventArgs e)
+        protected void verMas_OnClick(object sender, EventArgs e)
         {
-          
-            string codigoVoucher = txtCodigoVoucher.Text;
-
-            AccesoDatos accesoDatos = new AccesoDatos();
-
-            // Verificar si el código de voucher existe
-            bool existeVoucher = accesoDatos.ExisteCodigoVoucher(codigoVoucher);
-
-            if (existeVoucher)
-            {
-                // Si el voucher existe, redirigir a la página de selección de premio
-                Response.Redirect("SeleccionarPremio.aspx");
-            }
-            else
-            {
-                // Si el voucher no existe, mostrar un mensaje de error
-                lblError.Text = "El código del voucher no es válido o ya ha sido utilizado.";
-                lblError.Visible = true;
-            }
+            string btn = ((LinkButton)sender).CommandArgument;
+            int idSeleccionado = int.Parse(btn);
+            Session["Id"] = idSeleccionado;
+            Response.Redirect("DetallesArticulo.aspx", false);
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
 }

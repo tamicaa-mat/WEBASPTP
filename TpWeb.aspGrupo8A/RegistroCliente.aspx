@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroCliente.aspx.cs" Inherits="TpWeb.aspGrupo8A.RegistroCliente" %>
+﻿<%@ Page Title="Registro" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroCliente.aspx.cs" Inherits="TpWeb.aspGrupo8A.RegistroCliente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -45,21 +45,20 @@
             </div>
 
             <div class="col-12">
-                <div class="form-check">
+                <div class="form-check d-flex align-items-center" >
                     <asp:CheckBox ID="chkbAcepto" CssClass="form-check-input" runat="server" />
-                    <label class="form-check-label" for="chkbAcepto">
+                    <label class="form-check-label " for="chkbAcepto">
                         Acepto todo
                     </label>
-                    <asp:Label ID="lblMensajeError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
-
+                    <asp:Label ID="lblMensajeError" runat="server" CssClass="text-danger mt-1 d-block" Visible="false"></asp:Label>
                 </div>
             </div>
             <div class="col-12">
-                <asp:Button ID="btnParticipar" CssClass="btn btn-secondary" runat="server" Text="Participar" OnClick="btnParticipar_OnClick" />
+                <asp:Button ID="btnParticipar" CssClass="btn btn-secondary" runat="server" Text="Aceptar" OnClick="btnParticipar_OnClick" />
             </div>
-            <div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
+            <%--<div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
             <a href="SeleccionarPremio.aspx" class="btn btn-secondary">Volver</a>
-            </div>
+            </div>--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

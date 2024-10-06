@@ -17,17 +17,15 @@
              <p class="card-text"><%# TextDescripcion(Eval("Descripcion").ToString())%>
                 <asp:LinkButton Text="Ver más" runat="server" OnClick="verMas_OnClick" CssClass="text-decoration-none" CommandArgument='<%# Eval("Id").ToString() %>' /> 
              </p>
-            
             <a href="RegistroCliente.aspx" class="btn btn-secondary">Seleccionar</a>
             </div> 
             </div> 
         </ItemTemplate>
-         
      </asp:Repeater>
-        </div>
+       <%-- </div>
         <div class="btn-volver" style="display:flex; flex-direction:row; justify-content:end;">
         <a href="Default.aspx" class="btn btn-secondary">Volver</a>
-        </div>
+        </div>--%>
     </div>
    
 </asp:Content>
