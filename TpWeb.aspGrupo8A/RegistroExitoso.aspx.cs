@@ -16,7 +16,7 @@ namespace TpWeb.aspGrupo8A
                 string nombreCliente = Request.QueryString["nombre"];
                 if (!string.IsNullOrEmpty(nombreCliente))
                 {
-                    MensajeExito.Text = "¡" + nombreCliente + " Ya estas participando!";
+                    MensajeExito.Text = "¡Gracias, " + nombreCliente + "! Tu registro ha sido completado con éxito.";
                 }
             }
         }

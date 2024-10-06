@@ -23,7 +23,7 @@
 
             <div class="col-md-6">
                 <label for="textEmail" class="form-label">Email</label>
-                <asp:TextBox ID="textEmail" CssClass="form-control" runat="server" placeholder="tuMail@mail.com" />
+                <asp:TextBox ID="textEmail" CssClass="form-control" runat="server" placeholder="name@example.com" />
                 <asp:Label ID="lblErrorEmail" runat="server" Text="Label" CssClass="text-danger" Visible="false"></asp:Label>
             </div>
             <div class="col-12">
@@ -34,7 +34,7 @@
 
             <div class="col-md-6">
                 <label for="textCiudad" class="form-label">Ciudad</label>
-                <asp:TextBox CssClass="form-control" ID="textCiudad" runat="server" />
+                <asp:TextBox CssClass="form-control"  ID="textCiudad" runat="server" />
                 <asp:Label ID="lblErrorCiudad" runat="server" Text="Label" CssClass="text-danger" Visible="false"></asp:Label>
             </div>
 
