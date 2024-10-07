@@ -12,10 +12,9 @@ namespace Dominio
         {
             public string Codigo { get; set; }  
             public bool Usado { get; set; } 
-        
-          
-            public Cliente Cliente { get; set; }  // Cliente que utilizó el voucher (relación)
-
+            public int IdCliente { get; set; }
+            public DateTime FechaCaje { get; set; }
+            public int IdArticulo { get; set; }
            // public Premio PremioSeleccionado { get; set; }  // Premio seleccionado por el cliente (relación)
 
             public bool EsValido()

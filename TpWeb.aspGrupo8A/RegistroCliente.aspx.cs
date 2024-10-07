@@ -16,6 +16,7 @@ namespace TpWeb.aspGrupo8A
         {
             if (!IsPostBack)
             {
+               
             }
         }
         protected void textDni_TextChanged(object sender, EventArgs e)
@@ -45,28 +46,47 @@ namespace TpWeb.aspGrupo8A
                 {
                     return;
                 }
-                Cliente cliente = new Cliente();
-                cliente.DNI = textDni.Text.ToString();
-                cliente.Nombre = textNombre.Text.ToString();
-                cliente.Apellido = textApellido.Text.ToString();
-                cliente.Email = textEmail.Text.ToString();
-                cliente.Direccion = textDireccion.Text.ToString();
-                cliente.Ciudad = textCiudad.Text.ToString();
-                cliente.CodigoPostal = int.Parse(textCP.Text);
-                
+
+                Cliente cliente = new Cliente
+                {
+                    DNI = textDni.Text,
+                    Nombre = textNombre.Text,
+                    Apellido = textApellido.Text,
+                    Email = textEmail.Text,
+                    Direccion = textDireccion.Text,
+                    Ciudad = textCiudad.Text,
+                    CodigoPostal = int.Parse(textCP.Text)
+                };
 
                 ClienteNegocio clienteNegocio = new ClienteNegocio();
-
                 clienteNegocio.AltaCliente(cliente);
+
+                string desde = Request.QueryString["desde"];
+                if (desde != "promo")
+                {
+                    Cliente clienteId = clienteNegocio.ObtenerDniCliente(cliente.DNI);
+                    int idCliente = clienteId.Id; 
+
+                    if (Session["idVoucher"] != null && Session["idArticulo"] != null)
+                    {
+                        string codigoVoucher = Session["idVoucher"].ToString();
+                        int idArticulo = int.Parse(Session["idArticulo"].ToString());
+                        int yyyy = DateTime.Now.Year;
+                        int mm = DateTime.Now.Month;
+                        int dd = DateTime.Now.Day;
+                        DateTime fechaCanje = new DateTime(yyyy,mm,dd);
+
+                        PromoNegocio voucherNegocio = new PromoNegocio();
+                        voucherNegocio.guardarVoucher(codigoVoucher, idCliente, fechaCanje, idArticulo);
+                    }
+                }
+
                 Response.Redirect("RegistroExitoso.aspx?nombre=" + Server.UrlEncode(cliente.Nombre), false);
-                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
-
         }
 
 

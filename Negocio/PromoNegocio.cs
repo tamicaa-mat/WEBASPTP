@@ -64,13 +64,28 @@ namespace Negocio
             }
         }
 
+        public void guardarVoucher(string codigoVoucher, int idCliente, DateTime fechaCanje, int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                    datos.setearConsulta("UPDATE Vouchers SET IdCliente = @IdCliente, FechaCanje = @FechaCanje, IdArticulo = @IdArticulo " +
+                                         "WHERE CodigoVoucher = @CodigoVoucher;");
+                    datos.SetearParametro("@IdCliente", idCliente);
+                    datos.SetearParametro("@FechaCanje", fechaCanje);
+                    datos.SetearParametro("@IdArticulo", idArticulo);
+                    datos.SetearParametro("@CodigoVoucher", codigoVoucher);
 
-
-
-
-
-
-
-
+                    datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

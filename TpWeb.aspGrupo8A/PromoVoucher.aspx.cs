@@ -27,8 +27,9 @@ namespace TpWeb.aspGrupo8A
 
             if (existeVoucher)
             {
+                Session ["idVoucher"] = codigoVoucher;
                 // Si el voucher existe, redirigir a la página de selección de premio
-                Response.Redirect("SeleccionarPremio.aspx");
+                Response.Redirect("SeleccionarPremio.aspx?desde=promo", false);
             }
             else
             {
@@ -36,33 +37,6 @@ namespace TpWeb.aspGrupo8A
                 lblError.Text = "El código del voucher no es válido o ya ha sido utilizado.";
                 lblError.Visible = true;
             }
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
 }

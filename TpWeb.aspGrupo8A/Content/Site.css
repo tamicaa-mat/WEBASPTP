@@ -104,10 +104,10 @@ p {
 .textPromo p {
     color: #121212;
 }
-
+/*Pantalla de exito en proceso*/
 .containerExit {
-    background-color: forestgreen !important;
-    color: #ccc !important;
+    background-color: #28a745 !important;
+    color: #fbfbfb !important;
     text-align: center !important;
     padding: 20px !important;
     width: 100% !important;
@@ -118,10 +118,10 @@ p {
     border-radius: 5px !important;
 }
 
-    .containerExit i {
-        font-size: 50px;
-        margin-right: 20px;
-    }
+.containerExit i {
+font-size: 50px;
+margin-right: 20px;
+}
 
 .textM{
     font-size: 24px;
